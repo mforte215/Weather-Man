@@ -1,0 +1,27 @@
+.Future {
+    min-width: 100px;
+    width: 50%;
+    margin-left: 0;
+    left: 50%;
+    top: -100%;
+    position: relative;
+    height: 100%;
+    background: rgb(102,102,102);
+    background: linear-gradient(0deg, rgba(102,102,102,0.8268441165528712) 0%, rgba(35,76,131,1) 100%); 
+    border-top-right-radius: 3em;
+    border-bottom-right-radius: 3em;
+    color: white;
+    box-shadow: 0 7px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    ;
+}
+
+.weatherMap {
+    margin-top: 15%;
+    border-radius: 15px;
+}
+
+.ForecastTitle {
+    margin-top: 4%;
+    text-shadow: 2px 2px 4px #000000;
+}
+
