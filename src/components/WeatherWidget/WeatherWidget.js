@@ -17,42 +17,42 @@ const WeatherWidget = () => {
     let fiveDayForecast = {};
 
 
-        useEffect(() => {
+    useEffect(() => {
 
-            function getForecast() {
-                fetch('https://community-open-weather-map.p.rapidapi.com/forecast/daily?cnt=4&units=imperial&q=' + uriEncodedCity, {
-                    "method": "GET",
-                    "headers": {
-                        "x-rapidapi-key": process.env.REACT_APP_API_KEY,
-                        "x-rapidapi-host": "community-open-weather-map.p.rapidapi.com"
-                            }
-                        })
-                        .then(response => response.json())
-                        .then(response => {
-                            console.log("Logging Forecast Data");
-                            console.log(response.list);
-                            setForecastResponseObj(response);  
-                            }
-                        )
-                        .catch(err => {
-                            console.error(err);
-                        });
-                            }
+        function getForecast() {
+            fetch('https://community-open-weather-map.p.rapidapi.com/forecast/daily?cnt=4&units=imperial&q=' + uriEncodedCity, {
+                "method": "GET",
+                "headers": {
+                    "x-rapidapi-key": process.env.REACT_APP_API_KEY,
+                    "x-rapidapi-host": "community-open-weather-map.p.rapidapi.com"
+                }
+            })
+                .then(response => response.json())
+                .then(response => {
+                    console.log("Logging Forecast Data");
+                    console.log(response.list);
+                    setForecastResponseObj(response);
+                }
+                )
+                .catch(err => {
+                    console.error(err);
+                });
+        }
 
 
-            function getWeather() {
+        function getWeather() {
 
-                fetch( 'https://community-open-weather-map.p.rapidapi.com/weather?units='+unit+'&q='+uriEncodedCity, {
-                    "method": "GET",
-                    "headers": {
-                        "x-rapidapi-key": process.env.REACT_APP_API_KEY,
-                        "x-rapidapi-host": "community-open-weather-map.p.rapidapi.com"
-                    }
-                }).then(response => response.json())
+            fetch('https://community-open-weather-map.p.rapidapi.com/weather?units=' + unit + '&q=' + uriEncodedCity, {
+                "method": "GET",
+                "headers": {
+                    "x-rapidapi-key": process.env.REACT_APP_API_KEY,
+                    "x-rapidapi-host": "community-open-weather-map.p.rapidapi.com"
+                }
+            }).then(response => response.json())
                 .then(
                     response => {
                         currentData.currentCity = response.name;
-                        currentData.country = response.sys.country;
+                        /*currentData.country = response.sys.country; */
                         currentData.currentTemp = response.main.temp;
                         currentData.currentWeather = response.weather[0].description;
                         console.log("Logging Current Data");
@@ -60,17 +60,17 @@ const WeatherWidget = () => {
 
                         setCurrentResponseObj(currentData);
                     }
-                    );
-                }
+                );
+        }
 
-            getWeather();
-            getForecast();
-          }, []);
+        getWeather();
+        getForecast();
+    }, []);
 
     return (
         <div className={classes.Widget}>
             <Today responseObj={currentResponseObj} />
-            <Future responseObj={forecastResponseObj}  />
+            <Future responseObj={forecastResponseObj} />
         </div>
     );
 }
